@@ -1,4 +1,5 @@
 package org.example; //DO NOT DELETE
+import java.text.NumberFormat;
 import java.util.Scanner;
 class Main {
   public static void main(String[] args) {
@@ -56,13 +57,37 @@ class Main {
         System.out.println("Enter second word:");
         String word2 = input_line.nextLine();
         input_line.close();
+         String dots = "";
+        for (int i=0;i<(30-word1.length()-word2.length());i++) {
+            dots = dots + ".";
+        }
         System.out.println("\n" + word1 + dots + word2);
     }
     if (menu==6) { /// Adding up Integers
-        
+        System.out.println("How many integers will be added:");
+        int num = input_int.nextInt();
+        int sum = 0;
+        for (int i=0;i<num;i++) {
+            System.out.println("Enter an integer:");
+            sum = sum + input_int.nextInt();
+        }
+        input_int.close();
+        System.out.println("\nThe sum is " + sum);
     }
     if (menu==7) { /// Shipping Cost Calculator
-        
+        System.out.println("Weight of Order:");
+        int weight = input_int.nextInt();
+        if (weight>0&&weight<=10) {
+            System.out.println("Shipping Cost: $3.00");
+        }
+        if (weight>10) {
+            double cost = 3.0;
+            for (int i=0;i<weight-10;i++) {
+                cost+=.25;
+            }
+            NumberFormat currency = NumberFormat.getCurrencyInstance();
+            System.out.println("Shipping Cost: " + currency.format(cost));
+        }
     }
   }
 }
